@@ -1,0 +1,10 @@
+[Unit]
+Description=Spring boot application on docker
+After=syslog.target
+[Service]
+#Environment=CONF_FOLDER=/usr/local/malya/conf
+User=root
+ExecStart=/home/spring-boot-docker.jar
+SuccessExitStatus=143
+[Install]
+WantedBy=multi-user.target

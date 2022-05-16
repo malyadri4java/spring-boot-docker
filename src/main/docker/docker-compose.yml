@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  mongo_db:
+    image: "mongo"
+    container_name: "mongo"
+    volumes:
+      - data:/data/db:rw
+    ports:
+      - 27017:27017
+    networks:
+      - net01
+  web_app:
+    image: "mpatiban/spring-boot-mongo-docker:latest"
+    container_name: "webapp"
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prod"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo_db
+    networks:
+      - net01
+  volumes:
+    data:
+
+  networks:
+    net01:
